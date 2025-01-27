@@ -2,8 +2,15 @@ const postsData = require('../data/postsData')
 
 //index
 const index = (req, res) => {
-    res.send('Lista dei post')
-}
+    let postsFiltered = postsData;
+    const { ingredienti } = req.query;
+    if (ingredienti) {
+        postsFiltered = postsFiltered.filter((post) =>
+            post.ingredienti.includes(ingredienti)
+    );
+    }
+    res.json(postsFiltered);
+};
 
 //show
 const show = (req, res)  => {
