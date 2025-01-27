@@ -11,7 +11,7 @@ const show = (req, res)  => {
 }
 
 //create
-const create = (req, res) => {
+const store = (req, res) => {
     res.send('Creazione nuovo post')
 }
 
@@ -25,4 +25,4 @@ const destroy = (req, res) => {
     res.send(`Eliminazione del post: ${req.params.id}`)
 }
 
-module.exports = { index, show, create, update, destroy }
+module.exports = { index, show, store, update, destroy }
