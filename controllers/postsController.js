@@ -14,7 +14,13 @@ const index = (req, res) => {
 
 //show
 const show = (req, res)  => {
-    res.send('Dettagli del post')
+    const post = posts.Data.find((elm) => elm.id == req.params.id);
+    if (!post) {
+        return res.status(404).json({
+            error: "Post not found",
+        });
+    }
+    res.json(post);
 }
 
 //create
@@ -29,7 +35,14 @@ const update = (req, res) => {
 
 //delete
 const destroy = (req, res) => {
-    res.send(`Eliminazione del post: ${req.params.id}`)
-}
+    const post = postsData.find((elm) => elm.id == req.params.id)
+    if (!post) {
+        return res.status(404).json({
+            error: "Post not found",
+        });
+    }
+    postsData.splice(postsData.indexOf(pizza), 1);
+    res.sendStatus(204);
+};
 
 module.exports = { index, show, store, update, destroy }
