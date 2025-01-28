@@ -26,9 +26,7 @@ const show = (req, res)  => {
 //create
 const store = (req, res) => {
     console.log(req.body)
-    const newId = postsData[postsData.length - 1].id + 1
     const newPost = {
-        id: newId,
         name: req.body.name,
         image: req.body.image,
         ingredienti: req.body.ingredienti
@@ -41,7 +39,17 @@ const store = (req, res) => {
 
 //update
 const update = (req, res) => {
-    res.send(`Modifica integrale del post: ${req.params.id}`)
+    const post = postsData.find((elm) => elm.id == req.params.id)
+    if (!post) {
+        return res.status(404).json({
+            error: "Post not found",
+        });
+    }
+    post.name = req.body.name;
+    post.image = req.body.image;
+    post.ingredienti = req.body.ingredienti;
+
+    res.json(post);
 }
 
 //delete
