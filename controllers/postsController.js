@@ -25,7 +25,18 @@ const show = (req, res)  => {
 
 //create
 const store = (req, res) => {
-    res.send('Creazione nuovo post')
+    console.log(req.body)
+    const newId = postsData[postsData.length - 1].id + 1
+    const newPost = {
+        id: newId,
+        name: req.body.name,
+        image: req.body.image,
+        ingredienti: req.body.ingredienti
+    }
+
+    postsData.push(newPost)
+
+    res.sendStatus(201);
 }
 
 //update
