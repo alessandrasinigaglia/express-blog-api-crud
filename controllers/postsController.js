@@ -60,7 +60,7 @@ const destroy = (req, res) => {
             error: "Post not found",
         });
     }
-    postsData.splice(postsData.indexOf(pizza), 1);
+    postsData.splice(postsData.indexOf(post), 1);
     res.sendStatus(204);
 };
 
