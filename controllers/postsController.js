@@ -14,7 +14,7 @@ const index = (req, res) => {
 
 //show
 const show = (req, res)  => {
-    const post = posts.Data.find((elm) => elm.id == req.params.id);
+    const post = postsData.find((elm) => elm.id == req.params.id);
     if (!post) {
         return res.status(404).json({
             error: "Post not found",
@@ -25,17 +25,18 @@ const show = (req, res)  => {
 
 //create
 const store = (req, res) => {
-    console.log(req.body)
+    console.log(req.body);
     const newPost = {
+        id: postsData.length + 1, 
         name: req.body.name,
         image: req.body.image,
         ingredienti: req.body.ingredienti
-    }
+    };
 
-    postsData.push(newPost)
-
-    res.sendStatus(201);
-}
+    postsData.push(newPost);
+    
+    res.status(201).json(newPost);
+};
 
 //update
 const update = (req, res) => {
